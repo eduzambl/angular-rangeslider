@@ -267,6 +267,20 @@ $scope.demo8 = {
 			</div>
 		</div>
 
+<hr />
+
+		<div class="row">
+			<div class="span12">
+				<h3>Add Two-Way Binding with inputs</h3>
+				<h4>New Template</h4>
+
+				<div range-slider min="0" max="100" model-min="demo1.min" model-max="demo1.max" show-values="false" type-edit="true" class="ngrs-live-edits"></div>
+				<div class="span12">
+				<h4>The HTML</h4>
+				<pre>&lt;div range-slider min="0" max="100" model-min="demo1.min" model-max="demo1.max" show-values="false" type-edit="true" class="ngrs-live-edits"&gt;&lt;/div&gt;</pre>
+			</div>	
+			</div>
+</div>
 	</div>
 
 	<!-- we need jQuery -->
@@ -328,6 +342,15 @@ $scope.demo8 = {
 				};
 
         		$scope.demo7 = {
+					range: {
+						min: 0,
+						max: 10050
+					},
+					minPrice: 1000,
+					maxPrice: 4000
+				};
+
+				$scope.demo8 = {
 					range: {
 						min: 0,
 						max: 10050

@@ -81,14 +81,8 @@ $prefix: 'ngrs-';
 	margin: 10px 0 30px; // allow enough bottom margin to contain values
 	padding: $padding;
 
-	border: 1px solid #ccc;
 	background: #fff;
-
-	@include border-radius(4px);
-	@include box-shadow(inset 0 1px 1px rgba(0, 0, 0, 0.075));
-	@include transition(border linear .2s, box-shadow linear .2s);
-
-	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	
 
   /*------------------------------------*\
       RUNNER
@@ -119,6 +113,23 @@ $prefix: 'ngrs-';
 	}
 
   /*------------------------------------*\
+      RANGE BACKGROUND (total range background)
+  \*------------------------------------*/
+
+	.#{$prefix}range-bg {
+		position: absolute;
+		z-index: 0;
+		top: 50%;
+		left: 0;
+		right: 0%;
+		height: $joinWeight;
+		margin: (-$joinWeight / 2) 0 0 0;
+
+		@include border-radius($joinWeight / 2);
+		background-color: #2f96b4;
+		@include background-image(linear-gradient(#666666, #333333)); // primary: #08c, #04c | alternative: #5bc0de, #2f96b4
+	}
+  /*------------------------------------*\
       HANDLE
   \*------------------------------------*/
 
@@ -130,7 +141,8 @@ $prefix: 'ngrs-';
 		margin: 0 0 0 (-$handleWidth / 2);
 		background: #efefef;
 		border: 1px solid #ccc;
-		@include border-radius(3px);
+		@include border-radius(100%);
+
 
     /*------------------------------------*\
         HANDLE ICON
@@ -218,7 +230,7 @@ $prefix: 'ngrs-';
 	}
 
   /*------------------------------------*\
-      VERTICAL SLIDER
+      VERTICAL SLIDERsc
   \*------------------------------------*/
 
 	&.#{$prefix}vertical {
@@ -359,8 +371,6 @@ $prefix: 'ngrs-';
   \*------------------------------------*/
 
 	&.#{$prefix}focus {
-		border-color: rgba(82, 168, 236, 0.8);
-		@include box-shadow(inset 0 1px 1px rgba(0,0,0,0.075), 0 0 8px rgba(82,168,236,0.6));
 	}
 
   /*------------------------------------*\
@@ -395,6 +405,26 @@ $prefix: 'ngrs-';
 
 	}
 
+}
+
+.#{$prefix}live-edits { 
+	padding-left:5em;
+	padding-right:5em;
+	
+	input {
+		width:5em;
+		text-align:center;
+		position: absolute;
+		top:0.2em;
+	}
+	.pull-left {
+		left:0;
+
+	}
+	.pull-right {
+		right:0;
+
+	}
 }
 
 /*------------------------------------*\

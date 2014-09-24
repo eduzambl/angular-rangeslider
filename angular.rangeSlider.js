@@ -92,21 +92,9 @@
             angular.element('html').addClass('ngrs-no-touch');
         }
 
-
         return {
             restrict: 'A',
             replace: true,
-            template: ['<div class="ngrs-range-slider">',
-                         '<div class="ngrs-runner">',
-                           '<div class="ngrs-handle ngrs-handle-min"><i></i></div>',
-                           '<div class="ngrs-handle ngrs-handle-max"><i></i></div>',
-                           '<div class="ngrs-join"></div>',
-                         '</div>',
-                         '<div class="ngrs-value-runner">',
-                           '<div class="ngrs-value ngrs-value-min" ng-show="showValues"><div>{{filteredModelMin}}</div></div>',
-                           '<div class="ngrs-value ngrs-value-max" ng-show="showValues"><div>{{filteredModelMax}}</div></div>',
-                         '</div>',
-                       '</div>'].join(''),
             scope: {
                 disabled: '=?',
                 min: '=',
@@ -123,7 +111,39 @@
                 showValues: '@',
                 pinHandle: '@',
                 preventEqualMinMax: '@',
-                attachHandleValues: '@'
+                attachHandleValues: '@',
+                typeEdit: '@'
+            },
+            template: function(tElem, tAttrs){
+                var defaultTemplate = ['<div class="ngrs-range-slider">',
+                         '<div class="ngrs-runner">',
+                           '<div class="ngrs-handle ngrs-handle-min"><i></i></div>',
+                           '<div class="ngrs-handle ngrs-handle-max"><i></i></div>',
+                           '<div class="ngrs-join"></div>',
+                           '<div class="ngrs-range-bg"></div>',
+                         '</div>',
+                         '<div class="ngrs-value-runner">',
+                           '<div class="ngrs-value ngrs-value-min" ng-show="showValues"><div>{{filteredModelMin}}</div></div>',
+                           '<div class="ngrs-value ngrs-value-max" ng-show="showValues"><div>{{filteredModelMax}}</div></div>',
+                         '</div>',
+                       '</div>'].join('');
+
+                var liveEdit = ['<div class="ngrs-range-slider liveEdits">',
+                         '<input type="text" class="input-small ng-valid pull-left" ng-model="modelMin" ng-show="typeEdit">',
+                         '<div class="ngrs-runner">',
+                           '<div class="ngrs-handle ngrs-handle-min"><i></i></div>',
+                           '<div class="ngrs-handle ngrs-handle-max"><i></i></div>',
+                           '<div class="ngrs-join"></div>',
+                           '<div class="ngrs-range-bg"></div>',
+                         '</div>',
+                         '<input type="text" class="input-small ng-valid pull-right" ng-model="modelMax" ng-show="typeEdit">',
+                         '<div class="ngrs-value-runner">',
+                           '<div class="ngrs-value ngrs-value-min" ng-show="showValues"><div>{{filteredModelMin}}</div></div>',
+                           '<div class="ngrs-value ngrs-value-max" ng-show="showValues"><div>{{filteredModelMax}}</div></div>',
+                         '</div>',
+                       '</div>'].join('');
+
+                return tAttrs.typeEdit ? liveEdit : defaultTemplate;
             },
             link: function(scope, element, attrs, controller) {
 
@@ -144,7 +164,6 @@
                 // filtered
                 scope.filteredModelMin = scope.modelMin;
                 scope.filteredModelMax = scope.modelMax;
-
                 /**
                  *  FALL BACK TO DEFAULTS FOR SOME ATTRIBUTES
                  */
