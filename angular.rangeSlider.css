@@ -351,21 +351,27 @@
 
 /* line 410, scss/angular.rangeSlider.scss */
 .ngrs-live-edits {
-  padding-left: 5em;
-  padding-right: 5em;
+  padding-left: 4em;
+  padding-right: 4em;
 }
 /* line 414, scss/angular.rangeSlider.scss */
-.ngrs-live-edits input {
-  width: 5em;
+.ngrs-live-edits .input-xsm {
+  height: 20px;
+  padding: 0px 5px;
+  line-height: 1;
+  border-radius: 3px;
+  font-size: 10px;
+  display: inline-block;
+  width: 50px;
   text-align: center;
   position: absolute;
   top: 0.2em;
 }
-/* line 420, scss/angular.rangeSlider.scss */
+/* line 426, scss/angular.rangeSlider.scss */
 .ngrs-live-edits .pull-left {
   left: 0;
 }
-/* line 424, scss/angular.rangeSlider.scss */
+/* line 430, scss/angular.rangeSlider.scss */
 .ngrs-live-edits .pull-right {
   right: 0;
 }
@@ -373,7 +379,7 @@
 /*------------------------------------*\
     TOUCH STATE
 \*------------------------------------*/
-/* line 434, scss/angular.rangeSlider.scss */
+/* line 440, scss/angular.rangeSlider.scss */
 body.ngrs-touching {
   -ms-touch-action: none;
 }

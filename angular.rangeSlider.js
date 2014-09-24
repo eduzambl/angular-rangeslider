@@ -129,14 +129,14 @@
                        '</div>'].join('');
 
                 var liveEdit = ['<div class="ngrs-range-slider ngrs-live-edits">',
-                         '<input type="text" class="input-small ng-valid pull-left" ng-model="modelMin" ng-show="typeEdit">',
+                         '<input type="text" class="form-control input-xsm pull-left" ng-model="modelMin" ng-show="typeEdit">',
                          '<div class="ngrs-runner">',
                            '<div class="ngrs-handle ngrs-handle-min"><i></i></div>',
                            '<div class="ngrs-handle ngrs-handle-max"><i></i></div>',
                            '<div class="ngrs-join"></div>',
                            '<div class="ngrs-range-bg"></div>',
                          '</div>',
-                         '<input type="text" class="input-small ng-valid pull-right" ng-model="modelMax" ng-show="typeEdit">',
+                         '<input type="text" class="form-control input-xsm pull-right" ng-model="modelMax" ng-show="typeEdit">',
                          '<div class="ngrs-value-runner">',
                            '<div class="ngrs-value ngrs-value-min" ng-show="showValues"><div>{{filteredModelMin}}</div></div>',
                            '<div class="ngrs-value ngrs-value-max" ng-show="showValues"><div>{{filteredModelMax}}</div></div>',
