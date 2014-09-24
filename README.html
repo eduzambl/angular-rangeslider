@@ -1,0 +1,117 @@
+<h1 id="angular-rangeslider">angular-rangeslider</h1>
+<p><em>Current version: 0.0.8</em></p>
+<p>Angular RangeSlider is a directive that creates an interactive slider that allows a user to change model values.</p>
+<p>It has been styled to match form elements styled by <a href="http://twitter.github.io/bootstrap/">Twitter&#39;s Bootstrap CSS framework</a>.</p>
+<h4 id="requirements">Requirements</h4>
+<ul>
+<li>Angular (v1.1.4+)</li>
+<li>jQuery (v1.7+)</li>
+</ul>
+<h2 id="looking-for-collaborators">Looking for collaborators</h2>
+<p>This directive was written for a project completed way back in 2013. I&#39;ve not needed to use it since and have no plans (or time) to continue development / maintenance.</p>
+<p>If anyone would like to become a collaborator please let me know: <a href="https://twitter.com/danielcrisp82">@danielcrisp82</a></p>
+<h2 id="github-pages">GitHub Pages</h2>
+<p><a href="http://danielcrisp.github.io/angular-rangeslider/">Project page</a></p>
+<h2 id="quick-example">Quick example</h2>
+<p>A basic slider with a range of 0 to 100:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-min=&quot;min&quot; model-max=&quot;max&quot;&gt;&lt;/div&gt;
+</code></pre><p>As the handles are moved the model values <code>min</code> and <code>max</code> will be updated in the parent controller.</p>
+<p><img src="screenshots/slider.png" alt="Default example"></p>
+<h2 id="options">Options</h2>
+<p>Options are set as attributes on the <code>&lt;div range-slider&gt;</code></p>
+<h3 id="-two-way-bindings"><code>=</code> two-way bindings</h3>
+<p><code>min</code> - the minimum value the user can select (must be a number, can be a model property)</p>
+<p><code>max</code> - the maximum value the user can select (must be a number, can be a model property)</p>
+<p><code>model-min</code> - the model property for the min value, represents the position of the min handle</p>
+<p><code>model-max</code> - the model property for the max value, represents the position of the max handle</p>
+<p><code>disabled</code> - model property or boolean, disables the slider when <code>true</code></p>
+<h3 id="-attributes"><code>@</code> attributes</h3>
+<p><code>orientation</code> - slider orientation, default: &#39;horizontal&#39; - options: &#39;horizontal&#39; | &#39;vertical&#39; | &#39;vertical left&#39; | &#39;vertical right&#39;</p>
+<p><code>step</code> - amount to change the value by when moving a handle, default: 0</p>
+<p><code>decimal-places</code> - the number of decimal places to round to, default: 0</p>
+<p><code>filter</code> - a built-in filter to apply to the displayed values, for example <code>currency</code></p>
+<p><code>filter-options</code> - options to pass to the filter</p>
+<p><code>pin-handle</code> - disable/hide one handle, default: null - options: &#39;min&#39; | &#39;max&#39;</p>
+<p><code>prevent-equal-min-max</code> - prevent the <code>min</code> and <code>max</code> values from being equal. The <code>step</code> value is used to set the minimum difference, otherwise a value of <code>1</code> is used.</p>
+<p><code>attach-handle-values</code> - move the value labels in sync with the slider handles when <code>true</code>, default: <code>false</code></p>
+<h2 id="some-more-examples">Some more examples</h2>
+<h3 id="using-model-properties">Using model properties</h3>
+<p>The following properties are present in the scope:</p>
+<pre><code>// set available range
+$scope.minPrice = 100;
+$scope.maxPrice = 999;
+
+// default the user&#39;s values to the available range
+$scope.userMinPrice = $scope.minPrice;
+$scope.userMaxPrice = $scope.maxPrice;
+</code></pre><p>So we can include the directive in the HTML like this:</p>
+<pre><code>&lt;div range-slider min=&quot;minPrice&quot; max=&quot;maxPrice&quot; model-min=&quot;userMinPrice&quot; model-max=&quot;userMaxPrice&quot; step=&quot;5&quot;&gt;&lt;/div&gt;
+</code></pre><p>As the user moves the min and max handles the <code>userMinPrice</code> and <code>userMaxPrice</code> will be updated in increments of <code>5</code> in real-time in the model.</p>
+<h3 id="using-filters">Using filters</h3>
+<p>Continuing from the example above we can format the values displayed to the user as currency.</p>
+<pre><code>&lt;div range-slider min=&quot;minPrice&quot; max=&quot;maxPrice&quot; model-min=&quot;userMinPrice&quot; model-max=&quot;userMaxPrice&quot; step=&quot;5&quot; filter=&quot;currency&quot;&gt;&lt;/div&gt;
+</code></pre><p>This will automatically be localised by Angular, but we can force it to be USD by passing this as an option:</p>
+<pre><code>&lt;div range-slider min=&quot;minPrice&quot; max=&quot;maxPrice&quot; model-min=&quot;userMinPrice&quot; model-max=&quot;userMaxPrice&quot; step=&quot;5&quot; filter=&quot;currency&quot; filter-options=&quot;USD$&quot;&gt;&lt;/div&gt;
+</code></pre><p><img src="screenshots/currency.png" alt="Currency example"></p>
+<h3 id="making-the-slider-vertical">Making the slider vertical</h3>
+<p>Simply add one of the following values to the <code>orientation</code> attribute: &#39;vertical&#39;, &#39;vertical left&#39; or &#39;vertical right&#39;.</p>
+<p>This will create a vertical slider that is centred in it&#39;s parent element:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-min=&quot;min&quot; model-max=&quot;max&quot; orientation=&quot;vertical&quot;&gt;&lt;/div&gt;
+</code></pre><p><img src="screenshots/vertical.png" alt="Vertical example"></p>
+<p>To left-align the slider use &#39;vertical left&#39;:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-min=&quot;min&quot; model-max=&quot;max&quot; orientation=&quot;vertical left&quot;&gt;&lt;/div&gt;
+</code></pre><p>And to right-align the slider use &#39;vertical right&#39;:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-min=&quot;min&quot; model-max=&quot;max&quot; orientation=&quot;vertical right&quot;&gt;&lt;/div&gt;
+</code></pre><h3 id="disabling-the-slider">Disabling the slider</h3>
+<p>If you have a boolean property in your scope you can simply change this value to <code>true</code> to disable the slider:</p>
+<pre><code>$scope.sliderDisabled = false;
+</code></pre><p>And then specify the property using the disabled attribute:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-min=&quot;min&quot; model-max=&quot;max&quot; disabled=&quot;sliderDisabled&quot;&gt;&lt;/div&gt;
+
+// clicking this button will toggle the sliderDisabled value between true and false
+&lt;button ng-click=&quot;sliderDisabled=!sliderDisabled&quot;&gt;Toggle slider disabled status&lt;/button&gt;
+</code></pre><p><img src="screenshots/disabled.png" alt="Disabled example"></p>
+<h3 id="pinning-a-handle">Pinning a handle</h3>
+<p>If you would like only allow setting one value, effectively creating a single-value silder, set the pin-handle attribute to &#39;min&#39; or &#39;max&#39;. You may then omit the corresponding model-xxx property:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-max=&quot;max&quot; pin-handle=&quot;min&gt;&lt;/div&gt;
+</code></pre><p><img src="screenshots/pinned.png" alt="Pinned example"></p>
+<h3 id="move-values-with-handles">Move values with handles</h3>
+<p>Set the attach-handle-values attribute to true to have the values move with the slider handles. This works for either horizontal:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-min=&quot;min&quot; model-max=&quot;max&quot; attach-handle-values=&quot;true&quot;&gt;&lt;/div&gt;
+</code></pre><p><img src="screenshots/attached-handles-horizontal.png" alt="Attached handles horizontal example"></p>
+<p>or vertical:</p>
+<pre><code>&lt;div range-slider min=&quot;0&quot; max=&quot;100&quot; model-min=&quot;min&quot; model-max=&quot;max&quot; attach-handle-values=&quot;true&quot; orientation=&quot;vertical&quot;&gt;&lt;/div&gt;
+</code></pre><p><img src="screenshots/attached-handles-vertical.png" alt="Attached handles vertical example"></p>
+<h2 id="to-do">To Do</h2>
+<ul>
+<li>Remove full jQuery dependency</li>
+<li>Make it work in older Angular versions</li>
+<li>Improve behaviour when model values are not valid (e.g. min is greater than max)</li>
+<li>Improve the dev architecture (add jshint, tests, minification, auto-versioning etc)</li>
+</ul>
+<h2 id="known-issues">Known Issues</h2>
+<ul>
+<li>The slider restricts the model value when editing outside the slider (e.g. in an <input>) but the only notification is made to the <code>console</code></li>
+<li>The min slider handle disappears behind the max slider handle</li>
+</ul>
+<h2 id="credits">Credits</h2>
+<p>This was originally forked from <a href="http://refreshless.com/">Léon Gersen&#39;s</a> brilliant noUiSlider:</p>
+<p><a href="https://github.com/leongersen/noUiSlider">https://github.com/leongersen/noUiSlider</a></p>
+<h2 id="licence">Licence</h2>
+<p>This code is released under the <a href="http://opensource.org/licenses/MIT">MIT Licence</a></p>
+<p>Copyright (c) 2013 Daniel Crisp</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.</p>
