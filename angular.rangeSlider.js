@@ -128,7 +128,7 @@
                          '</div>',
                        '</div>'].join('');
 
-                var liveEdit = ['<div class="ngrs-range-slider liveEdits">',
+                var liveEdit = ['<div class="ngrs-range-slider ngrs-live-edits">',
                          '<input type="text" class="input-small ng-valid pull-left" ng-model="modelMin" ng-show="typeEdit">',
                          '<div class="ngrs-runner">',
                            '<div class="ngrs-handle ngrs-handle-min"><i></i></div>',
